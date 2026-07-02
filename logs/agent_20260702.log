@@ -1,0 +1,30 @@
+2026-07-02 10:36:13,224 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:13,238 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:13,260 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:13,282 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-02 10:36:13,304 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:13,329 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容已经存在知识库内，跳过
+2026-07-02 10:36:13,354 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容已经存在知识库内，跳过
+2026-07-02 10:36:27,326 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容加载成功，chunks=1
+2026-07-02 10:36:28,355 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容加载成功，chunks=1
+2026-07-02 10:36:29,372 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容加载成功，chunks=1
+2026-07-02 10:36:30,473 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容加载成功，chunks=1
+2026-07-02 10:36:31,558 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容加载成功，chunks=1
+2026-07-02 10:36:33,518 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容加载成功，chunks=3
+2026-07-02 10:36:35,110 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容加载成功，chunks=5
+2026-07-02 10:36:42,882 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:42,883 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:42,885 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:42,887 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-02 10:36:42,888 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-02 10:36:42,911 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容已经存在知识库内，跳过
+2026-07-02 10:36:42,913 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容已经存在知识库内，跳过
+2026-07-02 10:41:42,552 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容加载成功，chunks=1
+2026-07-02 10:41:44,524 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容加载成功，chunks=1
+2026-07-02 10:41:46,321 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容加载成功，chunks=1
+2026-07-02 10:41:47,478 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容加载成功，chunks=1
+2026-07-02 10:41:49,041 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容加载成功，chunks=1
+2026-07-02 10:41:50,886 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容加载成功，chunks=3
+2026-07-02 10:41:52,414 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容加载成功，chunks=5
+2026-07-02 10:45:09,869 - agent - INFO - middleware.py:50 - [log_before_model]即将调用模型，带有1条消息。
+2026-07-02 10:45:09,871 - agent - DEBUG - middleware.py:52 - [log_before_model]HumanMessage | 总结项目周报中的进展、风险和下周计划，并给出处理建议。

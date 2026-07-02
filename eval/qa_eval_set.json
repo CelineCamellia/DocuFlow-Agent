@@ -1,0 +1,52 @@
+[
+  {
+    "question": "项目周报中当前有哪些风险？",
+    "expected_keywords": ["PDF", "来源", "引用"],
+    "expected_source": "project_weekly_sample.txt"
+  },
+  {
+    "question": "企业报销制度要求提交哪些材料？",
+    "expected_keywords": ["发票", "付款凭证", "项目编号"],
+    "expected_source": "expense_policy_sample.txt"
+  },
+  {
+    "question": "会议纪要中的待办事项负责人是谁？",
+    "expected_keywords": ["张琳", "王明", "李华"],
+    "expected_source": "meeting_minutes_sample.txt"
+  },
+  {
+    "question": "风险分析报告应该包含哪些内容？",
+    "expected_keywords": ["风险背景", "风险等级", "处理建议"],
+    "expected_source": "risk_management_policy.txt"
+  },
+  {
+    "question": "企业内部项目进展报告模板包含哪些章节？",
+    "expected_keywords": ["项目概况", "当前进展", "问题与风险"],
+    "expected_source": "report_template_sample.md"
+  },
+  {
+    "question": "系统为什么需要展示检索片段来源？",
+    "expected_keywords": ["资料依据", "可信度", "编造"],
+    "expected_source": "meeting_minutes_sample.txt"
+  },
+  {
+    "question": "周报中下周计划提到了哪些优化？",
+    "expected_keywords": ["MD5", "检索结果片段", "评测问题"],
+    "expected_source": "project_weekly_sample.txt"
+  },
+  {
+    "question": "高风险项目应该在多久内升级处理？",
+    "expected_keywords": ["1 个工作日", "项目经理", "部门负责人"],
+    "expected_source": "risk_management_policy.txt"
+  },
+  {
+    "question": "差旅费用报销需要补充哪些材料？",
+    "expected_keywords": ["出差审批单", "行程单", "住宿明细"],
+    "expected_source": "expense_policy_sample.txt"
+  },
+  {
+    "question": "报告模板为什么要包含资料依据？",
+    "expected_keywords": ["资料依据", "判断答案可信度", "引用来源"],
+    "expected_source": "meeting_minutes_sample.txt"
+  }
+]

@@ -1,0 +1,11 @@
+collection_name: docuflow       # Chroma 向量库的集合名称，用于区分不同知识库
+persist_directory: chroma_db_docuflow    # 向量库在磁盘上持久化存储的路径
+k: 8                            # 检索器返回的文档数量，调大后更适合总结/统计类问题
+data_path: data/docuflow        # 存放原始知识文件的目录
+md5_hex_store: md5.text         # 已处理文件的 MD5 记录文件，用于去重
+allow_knowledge_file_type: ["txt", "md", "pdf", "docx"]  # 允许加载的文件类型列表（后缀名）
+
+chunk_size: 500                 # 文本切分的块大小，每个 Document 的字符数
+chunk_overlap: 80               # 文本切分时相邻块的重叠字符数
+separators: ["\n\n", "\n", ".", "!", "?", "。", "！", "？", " ", ""]
+                                # 文本切分时的优先分隔符列表，按顺序尝试切分

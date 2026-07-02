@@ -1,0 +1,121 @@
+2026-07-01 22:01:23,343 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:23,360 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:23,375 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:23,393 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 22:01:23,411 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:23,442 - agent - ERROR - vector_store.py:145 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 加载失败：请先安装 python-docx：pip install python-docx
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 86, in docx_loader
+    from docx import Document as DocxDocument
+ModuleNotFoundError: No module named 'docx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 112, in load_document
+    documents: list[Document] = get_file_documents(path)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 76, in get_file_documents
+    return docx_loader(read_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 88, in docx_loader
+    raise ImportError("请先安装 python-docx：pip install python-docx") from exc
+ImportError: 请先安装 python-docx：pip install python-docx
+2026-07-01 22:01:23,454 - agent - ERROR - vector_store.py:145 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 加载失败：请先安装 python-docx：pip install python-docx
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 86, in docx_loader
+    from docx import Document as DocxDocument
+ModuleNotFoundError: No module named 'docx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 112, in load_document
+    documents: list[Document] = get_file_documents(path)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 76, in get_file_documents
+    return docx_loader(read_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 88, in docx_loader
+    raise ImportError("请先安装 python-docx：pip install python-docx") from exc
+ImportError: 请先安装 python-docx：pip install python-docx
+2026-07-01 22:01:36,916 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:36,919 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:36,921 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:36,923 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 22:01:36,925 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 22:01:36,945 - agent - ERROR - vector_store.py:145 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 加载失败：请先安装 python-docx：pip install python-docx
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 86, in docx_loader
+    from docx import Document as DocxDocument
+ModuleNotFoundError: No module named 'docx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 112, in load_document
+    documents: list[Document] = get_file_documents(path)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 76, in get_file_documents
+    return docx_loader(read_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 88, in docx_loader
+    raise ImportError("请先安装 python-docx：pip install python-docx") from exc
+ImportError: 请先安装 python-docx：pip install python-docx
+2026-07-01 22:01:36,948 - agent - ERROR - vector_store.py:145 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 加载失败：请先安装 python-docx：pip install python-docx
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 86, in docx_loader
+    from docx import Document as DocxDocument
+ModuleNotFoundError: No module named 'docx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 112, in load_document
+    documents: list[Document] = get_file_documents(path)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\rag\vector_store.py", line 76, in get_file_documents
+    return docx_loader(read_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\DocuFlow-Agent\utils\file_handler.py", line 88, in docx_loader
+    raise ImportError("请先安装 python-docx：pip install python-docx") from exc
+ImportError: 请先安装 python-docx：pip install python-docx
+2026-07-01 22:05:29,924 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:05:29,924 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:05:29,926 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:05:29,929 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 22:05:29,931 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 22:05:31,898 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容加载成功，chunks=3
+2026-07-01 22:05:33,591 - agent - INFO - vector_store.py:140 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容加载成功，chunks=5
+2026-07-01 22:06:30,350 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:06:30,431 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:06:30,438 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:06:30,442 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 22:06:30,446 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 22:06:30,470 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容已经存在知识库内，跳过
+2026-07-01 22:06:30,473 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,811 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,813 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,816 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,820 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,823 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,842 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容已经存在知识库内，跳过
+2026-07-01 22:11:05,843 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,152 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,155 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,156 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,156 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,158 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,180 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容已经存在知识库内，跳过
+2026-07-01 23:12:38,200 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容已经存在知识库内，跳过
+2026-07-01 23:12:48,185 - agent - INFO - middleware.py:50 - [log_before_model]即将调用模型，带有1条消息。
+2026-07-01 23:12:48,185 - agent - DEBUG - middleware.py:52 - [log_before_model]HumanMessage | 分析一下周报内容
+2026-07-01 23:13:05,554 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\expense_policy_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 23:13:05,555 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\meeting_minutes_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 23:13:05,555 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\project_weekly_sample.txt 内容已经存在知识库内，跳过
+2026-07-01 23:13:05,556 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\report_template_sample.md 内容已经存在知识库内，跳过
+2026-07-01 23:13:05,556 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\risk_management_policy.txt 内容已经存在知识库内，跳过
+2026-07-01 23:13:05,582 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\企业项目周报-.docx 内容已经存在知识库内，跳过
+2026-07-01 23:13:05,583 - agent - INFO - vector_store.py:108 - [加载知识库]D:\Desktop\DocuFlow-Agent\data/docuflow\算法刷题目录.docx 内容已经存在知识库内，跳过
+2026-07-01 23:13:16,682 - agent - INFO - middleware.py:50 - [log_before_model]即将调用模型，带有1条消息。
+2026-07-01 23:13:16,682 - agent - DEBUG - middleware.py:52 - [log_before_model]HumanMessage | 已经上传了呀
