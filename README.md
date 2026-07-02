@@ -1,106 +1,287 @@
-# DocuFlow-Agent
+# DocuFlow-Agent：企业级 RAG + Agent 智能文档处理系统
 
-**企业级 RAG + Agent 智能文档处理与报告生成系统。**
+DocuFlow-Agent 是一个面向企业内部文档处理场景的大模型应用项目，基于 RAG + Agent + Tool Calling 构建智能文档处理流程，支持企业制度、会议纪要、项目周报、风险材料等文档的解析入库、语义检索、信息抽取、风险分析与 Word 报告生成。
 
-本项目面向企业内部制度、会议纪要、项目周报、风险规范、工况记录和报告模板等文档场景，构建一条从“文档输入 → 文档解析 → Chunk 切分 → Embedding 向量化 → Chroma 检索 → Agent 工具调用 → 结构化分析 → Word 报告导出”的轻量工程闭环。
+本项目重点体现大模型应用开发中的文档解析、向量检索、Agent 工具调用、Prompt Engineering、检索来源追踪和结构化报告生成能力。
 
-它不是普通 PDF 问答系统，而是将 RAG 封装为 Agent 工具，并扩展信息抽取、风险识别、文档对比、工况查询、报告大纲生成和 Word 导出能力的企业文档处理工作流。
+---
 
-## 1. 当前版本能力
+## 1. 项目定位
 
-### P0 已补强能力
+在企业内部知识管理场景中，会议纪要、项目周报、制度文件、风险说明等资料通常分散在不同文档中，人工查找和整理成本较高。DocuFlow-Agent 希望通过大模型应用能力，将企业文档处理流程自动化。
 
-- 支持 `txt / md / pdf / docx` 多格式企业文档上传。
-- 支持直接粘贴会议纪要、项目周报、制度条款等文本并保存入库。
-- 基于 `RecursiveCharacterTextSplitter` 进行 chunk 切分。
-- 基于 DashScope Embedding + Chroma 构建本地持久化向量库。
-- 基于 MD5 记录已处理文件，避免重复入库。
-- Agent 可调用 RAG、信息抽取、风险识别、文档对比、工况查询、报告大纲、Word 导出等工具。
-- RAG 回答会返回检索来源，Streamlit 页面可展开查看命中文档片段。
-- 支持将最近一次助手回复导出为 Word，并通过页面下载。
-- 提供 `eval/qa_eval_set.json` 和 `rag/retrieval_eval.py`，用于简单检索命中率与响应时延评测。
+系统核心流程：
 
-### 暂未实现能力
+```text
+企业文档输入
+→ 文档解析
+→ chunk 切分
+→ Embedding 向量化
+→ Chroma 向量库存储
+→ RAG 检索
+→ Agent 工具调用
+→ 结构化分析
+→ Word 报告生成
+```
 
-- 未实现 FastAPI 后端接口。
-- 未实现复杂 rerank 模型。
-- 未实现多路召回融合。
-- 未实现登录、权限、多用户管理。
-- 未实现 LoRA 微调；本项目定位是大模型应用系统，不做模型训练。
+本项目不是普通 PDF 问答系统，而是将 RAG 检索能力封装为 Agent 工具，并扩展信息抽取、文档对比、风险识别、工况查询、报告大纲生成和 Word 导出等能力，形成面向企业文档处理的轻量工作流。
+
+---
 
 ## 2. 技术栈
 
-- Python
-- Streamlit
-- LangChain / LangGraph runtime
-- Chroma
-- DashScope Embedding / Qwen Chat Model
-- RAG
-- Agent / Tool Calling
-- Prompt Engineering
-- python-docx
-- YAML 配置管理
-- Logging 日志工具
+| 方向        | 技术                       |
+| --------- | ------------------------ |
+| 开发语言      | Python                   |
+| 前端展示      | Streamlit                |
+| 大模型调用     | Qwen / DashScope         |
+| Embedding | DashScope Embedding      |
+| Agent 框架  | LangChain Agent          |
+| RAG 检索    | LangChain Retriever      |
+| 向量数据库     | Chroma                   |
+| 文档解析      | txt / md / pdf / docx    |
+| 报告生成      | python-docx              |
+| 工程化能力     | 配置管理、日志记录、Prompt 模板、检索评测 |
 
-## 3. 项目结构
+---
+
+## 3. 已实现功能
+
+### 3.1 多格式企业文档输入
+
+系统支持上传或录入企业内部文档，包括：
+
+* txt 文本文档；
+* md Markdown 文档；
+* pdf 文档；
+* docx Word 文档；
+* 页面直接粘贴的文本内容。
+
+上传后的文档会保存到本地知识库目录，并进入后续解析、切分和向量化流程。
+
+---
+
+### 3.2 文档解析与知识库构建
+
+系统会对文档进行统一处理：
+
+* 解析文档正文内容；
+* 对 docx 文档读取正文段落、表格单元格、页眉和页脚；
+* 使用 chunk 策略对长文本进行切分；
+* 使用 Embedding 模型生成文本向量；
+* 使用 Chroma 持久化存储向量；
+* 使用 MD5 去重，避免同一文档重复入库；
+* 支持知识库强制重建，方便重新解析文档。
+
+---
+
+### 3.3 RAG 检索增强问答
+
+用户提出问题后，系统会基于知识库进行语义检索，召回与问题相关的文档片段，并将片段作为上下文传入大模型生成回答。
+
+系统支持展示本轮 RAG 检索来源，包括：
+
+* 命中文档名称；
+* 文档页码或位置；
+* 命中文本片段；
+* 参考资料编号。
+
+该功能用于提升回答结果的可追溯性，避免模型脱离资料直接生成。
+
+---
+
+### 3.4 Agent 工具调用
+
+系统将不同文档处理能力封装为 Agent 工具，支持根据用户任务调用不同能力。
+
+已注册工具包括：
+
+| 工具                      | 作用                    |
+| ----------------------- | --------------------- |
+| rag_summarize           | 基于知识库检索并总结回答          |
+| extract_doc_info        | 抽取文档中的负责人、任务、风险、时间等信息 |
+| compare_documents       | 对比两段文档内容差异            |
+| identify_risks          | 识别项目文档中的风险点           |
+| get_case_info           | 查询模拟项目工况信息            |
+| generate_report_outline | 生成项目报告大纲              |
+| export_word_report      | 将分析结果导出为 Word 报告      |
+| fill_context_for_report | 触发报告生成场景              |
+
+---
+
+### 3.5 Prompt 分层设计
+
+项目中将提示词拆分为三类：
+
+| Prompt        | 作用                  |
+| ------------- | ------------------- |
+| main_prompt   | 控制 Agent 主任务判断与工具选择 |
+| rag_prompt    | 控制基于检索资料的回答生成       |
+| report_prompt | 控制结构化报告生成格式         |
+
+通过不同 Prompt 的拆分，系统可以区分普通问答、知识库检索和报告生成任务，提升输出稳定性。
+
+---
+
+### 3.6 Word 报告生成
+
+系统支持将分析结果整理为 Word 文档，用于模拟企业内部汇报材料、项目进展报告和风险分析报告的生成流程。
+
+报告生成能力包括：
+
+* 结构化分析结果整理；
+* Markdown 内容转 Word；
+* 页面下载 Word 文件；
+* 支持最近一次助手回复导出为 Word。
+
+---
+
+### 3.7 检索评测脚本
+
+项目提供轻量检索评测脚本，用于测试知识库检索效果。
+
+评测内容包括：
+
+* 检索问题数量；
+* top-k 命中文档情况；
+* 命中文档来源；
+* 平均检索耗时。
+
+该部分用于后续对 chunk 参数、top_k 配置和检索策略进行优化。
+
+---
+
+## 4. 项目结构
 
 ```text
-app.py                          # Streamlit 页面入口：上传、入库、问答、来源展示、报告下载
-agent/react_agent.py            # Agent 创建与流式执行
-agent/tools/agent_tools.py      # 企业文档处理工具函数
-agent/tools/middleware.py       # 工具监控、模型调用日志、动态 Prompt 切换
-rag/vector_store.py             # 文档加载、切分、MD5 去重、Chroma 入库
-rag/rag_service.py              # RAG 检索、上下文拼接、来源整理、模型总结
-rag/retrieval_eval.py           # 检索评测脚本
-services/report_service.py      # Word 报告导出服务
-utils/                          # 配置、路径、日志、文件加载工具
-config/                         # 模型、向量库、Prompt、外部数据路径配置
-prompts/                        # main_prompt / rag_summarize / report_prompt
-data/docuflow/                  # 企业文档样例
-data/external/case_records.csv  # 工况样例数据
-eval/qa_eval_set.json           # RAG 检索评测问题集
-outputs/reports/                # 报告导出目录
+DocuFlow-Agent/
+├── app.py                         # Streamlit 页面入口
+├── agent/
+│   ├── react_agent.py             # Agent 装配与执行逻辑
+│   └── tools/
+│       ├── agent_tools.py         # 工具函数定义
+│       └── middleware.py          # 工具调用监控与 Prompt 切换
+├── rag/
+│   ├── vector_store.py            # 文档解析、切分、向量库入库
+│   ├── rag_service.py             # RAG 检索与总结回答
+│   └── retrieval_eval.py          # 检索评测脚本
+├── services/
+│   └── report_service.py          # Word 报告生成服务
+├── model/
+│   └── factory.py                 # 模型与 Embedding 工厂
+├── utils/
+│   ├── config_handler.py          # 配置读取
+│   ├── file_handler.py            # 文件解析与 MD5 工具
+│   ├── logger_handler.py          # 日志工具
+│   ├── path_tool.py               # 路径处理
+│   └── prompt_loader.py           # Prompt 加载工具
+├── config/
+│   ├── agent.yml                  # Agent 配置
+│   ├── chroma.yml                 # 向量库配置
+│   ├── prompts.yml                # Prompt 路径配置
+│   └── rag.yml                    # 模型与 RAG 配置
+├── prompts/
+│   ├── main_prompt.txt            # Agent 主提示词
+│   ├── rag_summarize.txt          # RAG 总结提示词
+│   └── report_prompt.txt          # 报告生成提示词
+├── data/
+│   ├── docuflow/                  # 企业文档知识库目录
+│   └── external/                  # 模拟外部业务数据
+├── eval/
+│   └── qa_eval_set.json           # 检索评测样例
+├── outputs/                       # Word 报告输出目录
+├── requirements.txt
+└── README.md
 ```
 
-## 4. 快速启动
+---
 
-### 4.1 安装依赖
+## 5. 快速启动
+
+### 5.1 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4.2 配置模型环境
-
-本项目默认使用 DashScope 兼容模型配置。请在本地环境变量中配置 API Key。
+如需解析 Word 文档，请确保安装：
 
 ```bash
-# Windows PowerShell 示例
-setx DASHSCOPE_API_KEY "你的API_KEY"
+pip install python-docx
 ```
 
-也可以根据自己环境调整 `config/rag.yml` 中的模型名称。
+### 5.2 配置 API Key
 
-### 4.3 启动页面
+项目通过环境变量读取 DashScope API Key，请勿将 API Key 写入代码或上传到 GitHub。
+
+Windows PowerShell：
+
+```powershell
+setx DASHSCOPE_API_KEY "你的真实API_KEY"
+```
+
+配置完成后，关闭当前终端并重新打开。
+
+验证方式：
+
+```powershell
+echo $env:DASHSCOPE_API_KEY
+```
+
+### 5.3 配置模型
+
+在 `config/rag.yml` 中配置模型：
+
+```yaml
+chat_model_name: qwen-plus
+embedding_model_name: text-embedding-v4
+```
+
+### 5.4 启动项目
 
 ```bash
 streamlit run app.py
 ```
 
-### 4.4 构建知识库
-
-启动后在侧边栏点击：
+启动后浏览器访问：
 
 ```text
-保存文档并更新知识库
+http://localhost:8501
 ```
 
-系统会读取 `data/docuflow` 下的样例资料和用户上传资料，完成文档解析、chunk 切分、Embedding 向量化和 Chroma 入库。
+---
 
-## 5. 演示问题
+## 6. 使用流程
+
+1. 打开 Streamlit 页面；
+2. 在左侧上传企业文档，或直接粘贴文档内容；
+3. 点击“保存文档并更新知识库”；
+4. 等待系统完成文档解析、切分、Embedding 和向量库入库；
+5. 在聊天框输入问题；
+6. 系统基于知识库检索相关片段并生成回答；
+7. 展开“查看本轮 RAG 检索来源”查看命中文档；
+8. 如需报告，点击“将最近一次助手回复导出为 Word”。
+
+---
+
+## 7. 演示问题
+
+可以使用以下问题进行项目演示：
 
 ```text
-总结项目周报中的进展、风险和下周计划，并给出处理建议。
+请基于知识库中已上传的《企业项目周报.docx》，总结项目进展、主要风险和下周计划，并给出处理建议。
+```
+
+```text
+请从《企业项目周报.docx》中提取负责人、待办事项、风险项和截止时间。
+```
+
+```text
+请分析这份项目周报中的主要风险，并给出处理建议。
+```
+
+```text
+请根据这份项目周报生成一份结构化项目进展报告。
 ```
 
 ```text
@@ -111,82 +292,81 @@ streamlit run app.py
 会议纪要中有哪些待办事项、负责人和截止时间？
 ```
 
-```text
-根据 CASE-001 查询工况信息，并生成风险分析。
-```
+---
+
+## 8. 项目亮点
+
+### 8.1 从普通问答升级为文档处理工作流
+
+项目不仅支持知识库问答，还扩展了信息抽取、风险识别、文档对比和报告生成能力，更贴近企业内部文档处理场景。
+
+### 8.2 RAG 检索结果可追溯
+
+系统在回答后展示本轮检索来源，用户可以看到模型回答所依据的文档片段，降低无依据生成风险。
+
+### 8.3 Agent 工具化设计
+
+将 RAG 检索、信息抽取、风险分析、报告生成等能力封装为工具，使系统能够根据任务类型调用不同能力。
+
+### 8.4 Prompt 分层与报告生成
+
+通过 main_prompt、rag_prompt、report_prompt 分层设计，让普通问答和报告生成拥有不同输出约束，提升结构化输出质量。
+
+### 8.5 支持 Word 文档交付
+
+系统支持将分析结果导出为 Word 报告，模拟企业办公场景下的项目汇报和风险分析交付方式。
+
+---
+
+## 9. 当前边界
+
+当前版本主要用于本地演示和校招项目展示，已实现企业文档 RAG + Agent 的核心闭环，但仍有进一步优化空间。
+
+当前未包含：
+
+* 多用户权限系统；
+* 生产级数据库后台；
+* Docker / K8s 部署；
+* 复杂多路召回；
+* rerank 模型；
+* LoRA 微调；
+* 多模态解析；
+* 完整企业级权限与审计系统。
+
+---
+
+## 10. 后续优化方向
+
+后续可以继续增强以下能力：
+
+* 增加 query rewrite，提升复杂问题检索效果；
+* 引入 BM25 + 向量检索的多路召回策略；
+* 增加 rerank，对召回片段进行二次排序；
+* 对比不同 chunk_size、chunk_overlap 和 top_k 参数下的检索效果；
+* 增加更规范的 JSON 信息抽取；
+* 增加轻量 FastAPI 接口，方便前后端分离或服务化调用；
+* 扩展评测集，统计回答准确性、引用覆盖率和无依据拒答能力。
+
+---
+
+## 11. 简历表达
+
+项目可用于大模型应用开发、RAG 开发、AI Agent 开发和企业知识库方向的简历展示。
+
+推荐描述：
 
 ```text
-基于知识库生成一份项目进展报告，并导出 Word。
+DocuFlow-Agent：企业级 RAG + Agent 智能文档处理系统
+
+面向企业制度、会议纪要、项目周报、风险材料等内部文档场景，构建 RAG + Agent 智能文档处理系统，实现“文档输入—解析入库—语义检索—工具调用—结构化分析—Word 报告导出”的闭环。基于 Chroma + Embedding 构建企业文档向量库，支持多格式文档上传、chunk 切分、MD5 去重、top-k 检索和来源片段展示，并将文档检索、信息抽取、风险识别、报告生成等能力封装为 Agent 工具。
 ```
 
-## 6. 检索来源展示
+---
 
-每次 Agent 调用 RAG 工具后，页面会在助手回复下方提供“查看本轮 RAG 检索来源”折叠区，展示：
+## 12. 注意事项
 
-- 参考资料编号；
-- 来源文件名；
-- 页码/位置；
-- 命中文档片段。
-
-这个功能用于证明模型回答不是纯生成，而是基于企业知识库检索结果。
-
-## 7. 检索评测
-
-先构建知识库，再运行：
-
-```bash
-python rag/retrieval_eval.py
-```
-
-脚本会读取 `eval/qa_eval_set.json`，统计：
-
-- 评测问题数量；
-- 检索命中数；
-- hit_rate；
-- 平均检索时延 avg_latency_ms；
-- 每个问题命中的 top_sources。
-
-注意：当前评测是轻量检索评测，不是完整答案准确率评测。简历中不要写虚假的“准确率提升 xx%”，应该基于该脚本跑出的真实结果填写。
-
-## 8. 简历表达方向
-
-推荐表达：
-
-> 独立开发 DocuFlow-Agent 企业级 RAG + Agent 智能文档处理系统，面向企业制度、会议纪要、项目周报和风险材料等内部文档场景，实现多格式文档解析入库、Chroma 向量检索、Agent 工具调用、结构化信息抽取、风险识别、引用来源展示和 Word 报告导出。
-
-可写技术点：
-
-- 基于 Chroma + Embedding 构建企业文档向量库，支持多格式文档入库、MD5 去重、chunk 切分和 top_k 检索。
-- 将 RAG 封装为 Agent 工具，结合 LangChain create_agent 注册文档检索、信息抽取、风险识别、文档对比、工况查询和报告导出工具。
-- 通过 middleware 实现工具调用日志和普通问答 / 报告生成模式的动态 Prompt 切换。
-- 使用 Streamlit 实现文档上传、知识库更新、流式问答、检索来源展示和 Word 报告下载。
-- 构建轻量评测集，用于统计检索命中率和平均检索时延。
-
-## 9. 后续优化方向
-
-P1：RAG 工程化增强
-
-- query rewrite；
-- BM25 关键词检索 + 向量检索多路召回；
-- rerank；
-- chunk 策略对比；
-- 更完整的答案准确率评测。
-
-P2：Agent 工作流增强
-
-- 复杂任务拆解；
-- 风险识别结果与报告生成联动；
-- 更规范的 JSON 信息抽取；
-- 轻量 FastAPI 接口。
-
-## v1.2 P0 Bugfix 说明
-
-本版本修复了“页面显示已上传/已更新知识库，但问答时模型仍提示无法读取 docx 文件”的问题：
-
-1. 增强 `docx_loader`：同时读取 Word 正文段落、表格单元格、页眉和页脚，避免表格型题单/目录解析为空。
-2. `load_document()` 返回真实入库统计：新增入库文件数、chunk 数、跳过数和失败原因，不再只显示保存文件数量。
-3. 上传/重建知识库后刷新 RAG 服务，避免继续使用旧 retriever。
-4. 对“知识库、刚上传、docx、目录、题目、检索”等明显文档问题，增加强制 RAG 兜底路由，避免 Agent 未调用检索工具。
-5. 新增“强制重建知识库”按钮：如果旧版本已经错误入库或 MD5 已记录，点击该按钮可清空旧向量库和 MD5 记录后重新解析入库。
-
-如果你更新代码后仍然检索不到旧上传文件，请在页面左侧点击 **强制重建知识库（修复解析后点这个）**，然后再提问。
+* 请勿将 API Key 写入代码或上传至 GitHub；
+* 本项目默认使用本地 Chroma 向量库；
+* 上传新文档后需要点击“保存文档并更新知识库”；
+* 若希望重新解析所有文档，可以使用页面中的“强制重建知识库”按钮；
+* 若 Word 文档解析失败，请确认已安装 `python-docx`。
